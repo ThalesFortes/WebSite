@@ -34,6 +34,7 @@
 .button.outline {
   background-color: white;
   color: #0C70F2;
+  border: 2px solid #0C70F2;
 }
 
 .button.secondary:hover {
