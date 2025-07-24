@@ -10,10 +10,17 @@
 .hero h1{
   font-size: 65px;
   line-height: 125%;
+  margin-bottom: 30px;
 }
+
+.hero p{
+  margin-bottom: 30px;
+}
+
 
 .hero-text {
   width: 40%;
+  
 }
 
 @media (max-width: 768px) {
