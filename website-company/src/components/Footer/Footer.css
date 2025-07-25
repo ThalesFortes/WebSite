@@ -9,15 +9,6 @@ ul li {
   padding: 0;
 }
 
-ul li a{
-  color: #1D1D1D;
-  font-size: 20px;
-  text-decoration: none;
-
-  &:hover{
-    color: #0C70F2;
-  }
-}
 .footer-col {
   margin: 0 0 0 140px;
   max-width: 260px;
