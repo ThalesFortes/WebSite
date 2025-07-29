@@ -1,8 +1,11 @@
 import './ContactForm.css'
 import { useState, useEffect } from 'react'
-// COMPONENTS
 
+// COMPONENTS
 import Button from '../Button/Button'
+
+// UTILS
+import { postApiData } from '../../services/apiServices'
 
 function ContactForm () {
   const [formData, setFormData] = useState({
@@ -12,11 +15,29 @@ function ContactForm () {
   })
 
   const [isFormValid, setIsFormValid] = useState(false)
+  const [formSubmitLoading, setFormSubmitLoading] = useState(false)
+  const [formSubmitted, setFormSubmitted] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+   
     if (isFormValid) {
-      null
+      setFormSubmitLoading(true)
+      try {
+        const response = await postApiData("https://api.web3forms.com/submit", formData)
+
+        if (response.ok) {
+          setFormSubmitted(true)
+        } else {
+          alert("Erro ao enviar")
+        }
+
+      } catch (e) {
+        alert("Erro:", e)
+      } finally {
+        setFormSubmitLoading(false)
+      }
+    
     }
   }
 
@@ -39,12 +60,15 @@ function ContactForm () {
       ...formData,
       [name]:value
     })
+    if (formSubmitted) {
+      setFormSubmitted(false)
+    }
   }
 
   return(
     <div className='contact-form d-flex fd-column al-center'>
         <h2>We love meeting new people and helping them.</h2>
-        <form action="">
+        <form action="" onSubmit={handleSubmit}>
           <div className="d-flex form-group">
             <input
               className='form-input'
@@ -74,7 +98,8 @@ function ContactForm () {
             ></textarea>
             </div>
             <div className="al-center d-flex jc-end form-group">
-               <Button type="submit" buttonStyle="secondary" disabled={!isFormValid}>
+              {formSubmitted && <p className='text-primary'>Sucesso</p>}
+               <Button type="submit" buttonStyle="secondary" disabled={!isFormValid || formSubmitLoading} >
                 Enviar
               </Button>
             </div>
