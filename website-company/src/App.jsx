@@ -1,3 +1,4 @@
+import { useContext } from "react"
 import { BrowserRouter as Router, Routes, Route , Link} from "react-router-dom"
 
 // PAGES
@@ -8,8 +9,10 @@ import Contact from "./pages/Contact"
 
 // UTILS
 import ScrollToTop from "./utils/ScrollTop"
+import { AppContext } from "./contexts/AppContext"
 
 function App() {
+  const appContext = useContext(AppContext)
   return (
     <Router>
       <ScrollToTop/>

@@ -49,3 +49,7 @@
   pointer-events: none;
 }
 
+.button.unstyled{
+  background: none;
+  padding: 0;
+}
