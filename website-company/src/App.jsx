@@ -7,12 +7,20 @@ import About from "./pages/About"
 import Projects from "./pages/Projects"
 import Contact from "./pages/Contact"
 
+// COMPONENTS
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner"
+
 // UTILS
 import ScrollToTop from "./utils/ScrollTop"
 import { AppContext } from "./contexts/AppContext"
 
 function App() {
   const appContext = useContext(AppContext)
+
+  if (appContext.loading){
+    return <LoadingSpinner/>
+  }
+
   return (
     <Router>
       <ScrollToTop/>
